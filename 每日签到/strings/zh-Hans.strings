@@ -1,0 +1,11 @@
+"CHECKIN" = "签到";
+"XIAMI" = "虾米";
+"SET_COOKIES" = "设置 Cookies";
+"INSERT_XIAMI_COOKIES" = "输入虾米的 Cookies";
+"SAVE" = "保存";
+"SAVE_SUCCESS" = "保存成功!";
+"DAY" = "天";
+"CHECKIN_SUCCESS" = "成功签到";
+"CHECKIN_FAILURE" = "签到失败，请更新 Cookies";
+"PLEASE_SET_COOKIES_FIRST" = "请先设置 Cookies";
+"PLEASE_SET_COOKIES_IN_JSON_ARRAY_FORMAT" = "请正确设置 Cookies\n(以 JSON Array 的形式)";

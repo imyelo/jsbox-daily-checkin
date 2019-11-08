@@ -1,0 +1,11 @@
+"CHECKIN" = "Checkin";
+"XIAMI" = "Xiami";
+"SET_COOKIES" = "Set Cookies";
+"INSERT_XIAMI_COOKIES" = "Insert Xiami's Cookies";
+"SAVE" = "Save";
+"SAVE_SUCCESS" = "Success!";
+"DAY" = "DAY";
+"CHECKIN_SUCCESS" = "Check-in success!";
+"CHECKIN_FAILURE" = "Checkin failed.\n Please update your Cookies";
+"PLEASE_SET_COOKIES_FIRST" = "Please set Cookies first";
+"PLEASE_SET_COOKIES_IN_JSON_ARRAY_FORMAT" = "Please set Cookies in JSON Array format";
