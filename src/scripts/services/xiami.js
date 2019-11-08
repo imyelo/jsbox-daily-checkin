@@ -35,7 +35,7 @@ const action = async () => {
   }
 
   const latestDay = await check(jar)
-  jar.set('t_sign_auth', latestDay + 1, {
+  jar.set('t_sign_auth', latestDay, {
     domain: '.xiami.com',
   })
   const day = await check(jar)
