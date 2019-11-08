@@ -1,4 +1,4 @@
-const EventEmitter = require('./event-emitter')
+const EventEmitter = require('component-emitter')
 
 const DEFAULT_COOKIES_OPTIONS = {
   domain: '',
