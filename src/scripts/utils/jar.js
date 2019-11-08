@@ -40,7 +40,6 @@ class Jar {
       ...DEFAULT_COOKIES_OPTIONS,
       ...options,
     }
-    console.log(options)
     let newer = without(this._cookies, (cookie) => cookie.name === name)
     newer.push({
       name,
