@@ -27,7 +27,7 @@ class Jar {
     try {
       let object = JSON.parse(json)
       if (!Array.isArray(object)) {
-        throw new Error($l10n('PLEASE_SET_COOKIES_IN_JSON_ARRAY_FORMAT'))
+        throw new Error()
       }
       this._cookies = object
     } catch (error) {
@@ -65,7 +65,7 @@ class JarInCache extends Jar {
   constructor (cacheKey) {
     const cookiesJSON = $cache.get(cacheKey)
     if (!cookiesJSON) {
-      return $l10n('PLEASE_SET_COOKIES_FIRST')
+      throw new Error($l10n('PLEASE_SET_COOKIES_FIRST'))
     }
     super(cookiesJSON)
     this._hooks.on('update', (newer) => {
