@@ -1,7 +1,9 @@
 "CHECKIN" = "签到";
 "XIAMI" = "虾米";
+"V2EX" = "V2EX";
 "SET_COOKIES" = "设置 Cookies";
 "INSERT_XIAMI_COOKIES" = "输入虾米的 Cookies";
+"INSERT_V2EX_COOKIES" = "输入 V2EX 的 Cookies";
 "SAVE" = "保存";
 "SAVE_SUCCESS" = "保存成功!";
 "DAY" = "天";

@@ -24,6 +24,28 @@ const menu = [
       },
     ],
   },
+  {
+    title: $l10n('V2EX'),
+    rows: [
+      {
+        title: `🙋 ${$l10n('CHECKIN')}`,
+        action: async () => {
+          let result = await services.get($l10n('V2EX'))()
+          $ui.alert(result)
+        },
+      },
+      {
+        title: `⚙️ ${$l10n('SET_COOKIES')}`,
+        action: async () => {
+          try {
+            router.push('v2ex-set-cookies')
+          } catch (error) {
+            console.log(error)
+          }
+        },
+      },
+    ],
+  },
 ]
 
 module.exports = () => ({
