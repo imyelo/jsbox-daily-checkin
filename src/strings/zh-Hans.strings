@@ -8,6 +8,9 @@
 "SAVE_SUCCESS" = "保存成功!";
 "DAY" = "天";
 "CHECKIN_SUCCESS" = "成功签到";
-"CHECKIN_FAILURE" = "签到失败，请更新 Cookies";
+"CHECKIN_FAILURE" = "签到失败，请更新你的信息";
+"CHECKIN_PROGRAM_FAILURE" = "签到失败，请联系作者修复程序";
+"HAVE_BEEN_CHECKED_IN_BEFORE" = "今日已签过到了，现将跳过本次操作";
+"PROFILE_IS_EXPIRED" = "你的信息已过期，请更新";
 "PLEASE_SET_COOKIES_FIRST" = "请先设置 Cookies";
 "PLEASE_SET_COOKIES_IN_JSON_ARRAY_FORMAT" = "请正确设置 Cookies\n(以 JSON Array 的形式)";

@@ -8,6 +8,9 @@
 "SAVE_SUCCESS" = "Success!";
 "DAY" = "DAY";
 "CHECKIN_SUCCESS" = "Check-in success!";
-"CHECKIN_FAILURE" = "Checkin failed.\n Please update your Cookies";
+"CHECKIN_FAILURE" = "Checkin failed.\nPlease update your profile";
+"CHECKIN_PROGRAM_FAILURE" = "Checkin failed.\nPlease contact the author to fix it";
+"HAVE_BEEN_CHECKED_IN_BEFORE" = "You have been checked-in before.\nIgnoring this time now.";
+"PROFILE_IS_EXPIRED" = "Your profile is expired. Please update it.";
 "PLEASE_SET_COOKIES_FIRST" = "Please set Cookies first";
 "PLEASE_SET_COOKIES_IN_JSON_ARRAY_FORMAT" = "Please set Cookies in JSON Array format";

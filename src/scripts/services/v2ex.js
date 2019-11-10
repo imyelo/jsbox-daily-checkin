@@ -14,72 +14,97 @@ const action = async () => {
     'Referer': 'https://www.v2ex.com/',
   })
 
+  let request = (() => {
+    const doRequest = ({ method, url, jar }) => {
+      const cookies = Jar.stringify(jar.values())
+      const header = getHeader({ cookies })
+      return $http.request({
+        method,
+        url,
+        header,
+      })
+    }
+    return {
+      get: (url, options) => doRequest({ method: 'GET', url, ...options }),
+      post: (url, options) => doRequest({ method: 'POST', url, ...options }),
+    }
+  })()
+
+  class ServerApi {
+    constructor ({ jar }) {
+      this.jar = jar
+    }
+
+    async homepage () {
+      const { data } = await request.get('https://www.v2ex.com/', { jar: this.jar })
+      const isLoggedIn = data.includes('登出')
+      return {
+        isLoggedIn,
+      }
+    }
+
+    async mission () {
+      const { data } = await request.get('https://www.v2ex.com/mission/daily', { jar: this.jar })
+      const isCompleted = data.includes('每日登录奖励已领取')
+      const matched = data.match(/redeem\?once=(.*?)'/)
+      const once = matched && matched[1]
+      return {
+        isCompleted,
+        once,
+      }
+    }
+
+    async checkin ({ once }) {
+      const url = `https://www.v2ex.com/mission/daily/redeem?once=${encodeURIComponent(once)}`
+      const result = await request.get(url, { jar: this.jar })
+      return result.response.statusCode === 302 // TODO: double check this logic
+    }
+
+    async balance () {
+      const { data } = await request.get('https://www.v2ex.com/balance', { jar: this.jar })
+      const matched = data.match(/(\d+?)\s的每日登录奖励\s(\d+)\s铜币/)
+      return {
+        message: matched && matched[0],
+        date: matched && matched[1],
+        reward: matched && matched[2],
+      }
+    }
+  }
+
   /**
    * refs: https://qiandao.today/tpl/8359/edit
    */
-  const replay = async (jar) => {
-    const cookies = Jar.stringify(jar.values())
-    const header = getHeader({ cookies })
-
-    let result, matched
-    result = await $http.request({
-      method: 'GET',
-      url: 'https://www.v2ex.com/',
-      header,
-    })
-    if (!result.data.includes('领取今日的登录奖励')) {
-      throw new Error('TODO')
+  const replay = async ({ jar }) => {
+    let result
+    const api = new ServerApi({ jar })
+    result = await api.homepage()
+    if (!result.isLoggedIn) {
+      throw new Error($10n('PROFILE_IS_EXPIRED'))
     }
-    result = await $http.request({
-      method: 'GET',
-      url: 'https://www.v2ex.com/mission/daily',
-      header,
-    })
-    if (result.data.includes('每日登录奖励已领取')) {
-      throw new Error('TODO')
+    result = await api.mission()
+    if (result.isCompleted) {
+      throw new Error($l10n('HAVE_BEEN_CHECKED_IN_BEFORE'))
     }
-    matched = result.data.match(/redeem\?once=(.*?)'/)
-    if (!matched) {
-      throw new Error('TODO')
+    await api.checkin({ once: result.once })
+    result = await api.mission()
+    if (!result.isCompleted) {
+      throw new Error($l10n('CHECKIN_PROGRAM_FAILURE'))
     }
-    let once = matched[1]
-    result = await $http.request({
-      method: 'GET',
-      url: `https://www.v2ex.com/mission/daily/redeem?once=${encodeURIComponent(once)}`,
-      header,
-    })
-
-    console.log(result)
-
-    result = await $http.request({
-      method: 'GET',
-      url: 'https://www.v2ex.com/mission/daily',
-      header,
-    })
-    if (!result.data.includes('每日登录奖励已领取')) {
-      throw new Error('TODO')
+    let { message } = await api.balance()
+    if (!message) {
+      throw new Error($l10n('CHECKIN_PROGRAM_FAILURE'))
     }
-    result = await $http.request({
-      method: 'GET',
-      url: 'https://www.v2ex.com/balance',
-      header,
-    })
-    if (!result.data.includes('当前账户余额')) {
-      throw new Error('TODO')
-    }
-    matched = result.data.match(/\d+?\s的每日登录奖励\s\d+\s铜币/)
-    if (!matched) {
-      throw new Error('TODO')
-    }
-
-    return matched[1]
+    return message
   }
 
-  const result = await replay()
-
-  return result
-    ? `🎉 ${$l10n('CHECKIN_SUCCESS')} ${result}`
-    : $l10n('CHECKIN_FAILURE')
+  try {
+    const result = await replay({ jar })
+    return `🎉 ${$l10n('CHECKIN_SUCCESS')} ${result}`
+  } catch (error) {
+    console.log(error)
+    // TODO: filter custom error
+    return error.message
+  }
 }
 
 module.exports = action
