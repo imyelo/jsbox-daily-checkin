@@ -2,6 +2,8 @@ const { resolve } = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const JSBoxPlugin = require('jsbox-webpack-plugin')
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
   context: resolve('src'),
   entry: './scripts/main.js',
@@ -22,7 +24,9 @@ module.exports = {
       { from: 'strings', to: 'strings' },
       { from: 'assets', to: 'assets' },
     ]),
-    new JSBoxPlugin(),
+    new JSBoxPlugin({
+      sync: !isProduction,
+    }),
   ],
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'none',
+  mode: isProduction ? 'production' : 'none',
 }
