@@ -50,6 +50,12 @@ class Jar {
     this._hooks.emit('update', newer)
   }
 
+  remove (name) {
+    let newer = without(this._cookies, (cookie) => cookie.name === name)
+    this._cookies = newer
+    this._hooks.emit('update', newer)
+  }
+
   values () {
     return this._cookies
   }

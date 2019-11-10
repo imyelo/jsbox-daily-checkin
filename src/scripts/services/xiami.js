@@ -2,8 +2,6 @@ const { CACHE } = require('../constant')
 const { Jar, JarInCache } = require('../utils/jar')
 
 const action = async () => {
-  const jar = new JarInCache(CACHE.XIAMI_COOKIES)
-
   const check = async (jar) => {
     /**
      * refs:
@@ -34,15 +32,30 @@ const action = async () => {
     return day
   }
 
-  const latestDay = await check(jar)
-  jar.set('t_sign_auth', latestDay, {
-    domain: '.xiami.com',
-  })
-  const day = await check(jar)
+  try {
+    const jar = new JarInCache(CACHE.XIAMI_COOKIES)
+    jar.remove('t_sign_auth')
+    const latestDay = await check(jar)
+    if (!latestDay) {
+      throw new Error($l10n('CHECKIN_FAILURE'))
+    }
+    jar.set('t_sign_auth', latestDay, {
+      domain: '.xiami.com',
+    })
+    const day = await check(jar)
+    if (!day) {
+      throw new Error($l10n('CHECKIN_FAILURE'))
+    }
 
-  return day
-    ? `🎉 ${$l10n('CHECKIN_SUCCESS')} ${day} ${$l10n('DAY')}`
-    : $l10n('CHECKIN_FAILURE')
+    if (day === latestDay) {
+      throw new Error($l10n('HAVE_BEEN_CHECKED_IN_BEFORE'))
+    }
+
+    return `🎉 ${$l10n('CHECKIN_SUCCESS')} ${day} ${$l10n('DAY')}`
+  } catch (error) {
+    console.log(error)
+    return error.message
+  }
 }
 
 module.exports = action
