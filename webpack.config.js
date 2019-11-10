@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
+const JSBoxPlugin = require('jsbox-webpack-plugin')
 
 module.exports = {
   context: resolve('src'),
@@ -21,6 +22,7 @@ module.exports = {
       { from: 'strings', to: 'strings' },
       { from: 'assets', to: 'assets' },
     ]),
+    new JSBoxPlugin(),
   ],
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'none',
 }
