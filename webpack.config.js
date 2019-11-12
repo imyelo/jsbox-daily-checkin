@@ -7,7 +7,7 @@ module.exports = {
   context: resolve('src'),
   entry: './scripts/main.js',
   output: {
-    path: resolve(`dist/${require('./src/config.json').info.name}`),
+    path: resolve('dist'),
     filename: 'scripts/main.js',
     globalObject: 'global',
   },
@@ -16,6 +16,10 @@ module.exports = {
   },
   plugins: [
     new JSBoxPlugin({
+      copy: [
+        [resolve('readme.md'), 'README.md'],
+        [resolve('readme-en.md'), 'README-EN.md'],
+      ],
       upload: !isProduction,
     }),
   ],
