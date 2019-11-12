@@ -79,7 +79,7 @@ const action = async () => {
     const api = new ServerApi({ jar })
     result = await api.homepage()
     if (!result.isLoggedIn) {
-      throw new Error($10n('PROFILE_IS_EXPIRED'))
+      throw new Error($l10n('PROFILE_IS_EXPIRED'))
     }
     result = await api.mission()
     if (result.isCompleted) {
