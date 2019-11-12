@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/imyelo/jsbox-daily-checkin#readme",
   "devDependencies": {
-    "copy-webpack-plugin": "^5.0.5",
     "cross-env": "^6.0.3",
     "jsbox-webpack-plugin": "^0.0.0",
     "lerna": "^3.18.4",
