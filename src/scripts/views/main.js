@@ -5,16 +5,23 @@ const menu = [
     title: `🙋 ${$l10n('CHECKIN_MANUALLY')}`,
     rows: [
       {
+        title: `💥 ${$l10n('CHECKIN_ALL_IN_ONE')}`,
+        action: async () => {
+          let result = await services.executeAll()
+          $ui.alert(result)
+        },
+      },
+      {
         title: `🍤 ${$l10n('XIAMI')}`,
         action: async () => {
-          let result = await services.get($l10n('XIAMI'))()
+          let result = await services.execute('XIAMI')
           $ui.alert(result)
         },
       },
       {
         title: `👨‍💻 ${$l10n('V2EX')}`,
         action: async () => {
-          let result = await services.get($l10n('V2EX'))()
+          let result = await services.execute('V2EX')
           $ui.alert(result)
         },
       },
