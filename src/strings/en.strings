@@ -17,3 +17,5 @@
 "PROFILE_IS_EXPIRED" = "Your profile is expired. Please update it.";
 "PLEASE_SET_COOKIES_FIRST" = "Please set Cookies first";
 "PLEASE_SET_COOKIES_IN_JSON_ARRAY_FORMAT" = "Please set Cookies in JSON Array format";
+
+"CATCH_ME_ON_GITHUB" = "Catch me on GitHub";

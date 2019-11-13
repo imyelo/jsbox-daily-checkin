@@ -17,3 +17,5 @@
 "PROFILE_IS_EXPIRED" = "你的信息已过期，请更新";
 "PLEASE_SET_COOKIES_FIRST" = "请先设置 Cookies";
 "PLEASE_SET_COOKIES_IN_JSON_ARRAY_FORMAT" = "请正确设置 Cookies\n(以 JSON Array 的形式)";
+
+"CATCH_ME_ON_GITHUB" = "Catch me on GitHub";

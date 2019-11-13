@@ -53,10 +53,15 @@ module.exports = () => ({
           type: 'label',
           props: {
             height: 20,
-            text: 'github.com/imyelo',
+            text: $l10n('CATCH_ME_ON_GITHUB'),
             textColor: $color('#AAAAAA'),
             align: $align.center,
             font: $font(12),
+          },
+          events: {
+            tapped: () => {
+              $app.openURL('https://github.com/imyelo/jsbox-daily-checkin')
+            },
           },
         },
       },
