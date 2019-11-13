@@ -67,18 +67,18 @@ class Jar {
   }
 }
 
-class JarInCache extends Jar {
-  constructor (cacheKey) {
-    const cookiesJSON = $cache.get(cacheKey)
+class JarInPrefs extends Jar {
+  constructor (prefKey) {
+    const cookiesJSON = $prefs.get(prefKey)
     if (!cookiesJSON) {
       throw new Error($l10n('PLEASE_SET_COOKIES_FIRST'))
     }
     super(cookiesJSON)
     this._hooks.on('update', (newer) => {
-      $cache.set(cacheKey, JSON.stringify(newer, null, 2))
+      $prefs.set(prefKey, JSON.stringify(newer, null, 2))
     })
   }
 }
 
 exports.Jar = Jar
-exports.JarInCache = JarInCache
+exports.JarInPrefs = JarInPrefs

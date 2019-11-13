@@ -1,12 +1,14 @@
 "CHECKIN" = "Checkin";
+"DAY" = "Day";
+
+"CHECKIN_MANUALLY" = "Checkin Manually";
+"SETTINGS" = "Settings";
+"PROFILES" = "Profiles";
+"COOKIES" = "Cookies";
+
 "XIAMI" = "Xiami";
 "V2EX" = "V2EX";
-"SET_COOKIES" = "Set Cookies";
-"INSERT_XIAMI_COOKIES" = "Insert Xiami's Cookies";
-"INSERT_V2EX_COOKIES" = "Insert V2EX's Cookies";
-"SAVE" = "Save";
-"SAVE_SUCCESS" = "Success!";
-"DAY" = "DAY";
+
 "CHECKIN_SUCCESS" = "Check-in success!";
 "CHECKIN_FAILURE" = "Checkin failed.\nPlease update your profile";
 "CHECKIN_PROGRAM_FAILURE" = "Checkin failed.\nPlease contact the author to fix it";

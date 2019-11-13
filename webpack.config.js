@@ -18,7 +18,7 @@ module.exports = {
     new JSBoxPlugin({
       copy: [
         [resolve('readme.md'), 'README.md'],
-        [resolve('readme-en.md'), 'README-EN.md'],
+        [resolve('readme-en.md'), 'README_EN.md'],
       ],
       upload: !isProduction,
     }),

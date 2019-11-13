@@ -1,0 +1,27 @@
+{
+  "title": "PROFILES",
+  "groups": [
+    {
+      "title": "XIAMI",
+      "items": [
+        {
+          "title": "COOKIES",
+          "type": "string",
+          "key": "xiami.cookies",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "title": "V2EX",
+      "items": [
+        {
+          "title": "COOKIES",
+          "type": "string",
+          "key": "v2ex.cookies",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

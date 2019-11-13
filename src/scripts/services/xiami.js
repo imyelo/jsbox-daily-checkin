@@ -1,5 +1,5 @@
-const { CACHE } = require('../constant')
-const { Jar, JarInCache } = require('../utils/jar')
+const { PREFS } = require('../constant')
+const { Jar, JarInPrefs } = require('../utils/jar')
 
 const action = async () => {
   const check = async (jar) => {
@@ -33,7 +33,7 @@ const action = async () => {
   }
 
   try {
-    const jar = new JarInCache(CACHE.XIAMI_COOKIES)
+    const jar = new JarInPrefs(PREFS.XIAMI_COOKIES)
     jar.remove('t_sign_auth')
     const latestDay = await check(jar)
     if (!latestDay) {

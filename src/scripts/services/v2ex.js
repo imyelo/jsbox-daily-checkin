@@ -1,8 +1,8 @@
-const { CACHE } = require('../constant')
-const { Jar, JarInCache } = require('../utils/jar')
+const { PREFS } = require('../constant')
+const { Jar, JarInPrefs } = require('../utils/jar')
 
 const action = async () => {
-  const jar = new JarInCache(CACHE.V2EX_COOKIES)
+  const jar = new JarInPrefs(PREFS.V2EX_COOKIES)
 
   const getHeader = ({ cookies }) => ({
     'Pragma': 'no-cache',

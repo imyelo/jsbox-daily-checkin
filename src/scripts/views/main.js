@@ -1,47 +1,32 @@
 const services = require('../services/index')
-const router = require('../utils/router')
 
 const menu = [
   {
-    title: $l10n('XIAMI'),
+    title: `🙋 ${$l10n('CHECKIN_MANUALLY')}`,
     rows: [
       {
-        title: `🙋 ${$l10n('CHECKIN')}`,
+        title: `🍤 ${$l10n('XIAMI')}`,
         action: async () => {
           let result = await services.get($l10n('XIAMI'))()
           $ui.alert(result)
         },
       },
       {
-        title: `⚙️ ${$l10n('SET_COOKIES')}`,
-        action: async () => {
-          try {
-            router.push('xiami-set-cookies')
-          } catch (error) {
-            console.log(error)
-          }
-        },
-      },
-    ],
-  },
-  {
-    title: $l10n('V2EX'),
-    rows: [
-      {
-        title: `🙋 ${$l10n('CHECKIN')}`,
+        title: `👨‍💻 ${$l10n('V2EX')}`,
         action: async () => {
           let result = await services.get($l10n('V2EX'))()
           $ui.alert(result)
         },
       },
+    ],
+  },
+  {
+    title: `⚙️ ${$l10n('SETTINGS')}`,
+    rows: [
       {
-        title: `⚙️ ${$l10n('SET_COOKIES')}`,
+        title: `🎭 ${$l10n('PROFILES')}`,
         action: async () => {
-          try {
-            router.push('v2ex-set-cookies')
-          } catch (error) {
-            console.log(error)
-          }
+          $prefs.open()
         },
       },
     ],
